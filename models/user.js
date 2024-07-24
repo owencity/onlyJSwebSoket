@@ -1,20 +1,20 @@
-import mongoose, { Mongoose } from "mongoose";
+// user.js
+import mongoose from "mongoose";
 
-
-export const schemaModule = () => {
-const userScema = new mongoose.Schema({
-    name : {
+const userSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: [true, "User must type name"],
         unique: true,
     },
-    token: {
-        type: String,
+    token: { // 필요에 따라 수정 또는 제거
+      type: String,
+      // expiresAt: Date, // 유효 기간 추가 (선택 사항)
     },
-    online: {
-        type: Boolean,
-        default: false,
+    online: { // 실시간 상태 관리는 Socket.IO 등을 사용 (선택 사항)
+      type: Boolean,
+      default: false,
     },
-})
-}
+});
 
+export default mongoose.model("User", userSchema);
